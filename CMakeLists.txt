@@ -15,6 +15,7 @@ set(STARTFILE "\n#ifdef __EMSCRIPTEN__\n#include \"emscripten.h\"\nnamespace MX{
 set(ENDFILE "\n});\n}\n}}\n#endif")
 configure_file( js/drive_appdata.js src/drive_appdata.cpp @ONLY )
 configure_file( html/test_index.html ${PROJECT_BINARY_DIR}/bin/index.html @ONLY )
+configure_file( html/js/drive.js ${PROJECT_BINARY_DIR}/bin/js/drive.js @ONLY )
 
 if (MSVC)
 #configure_msvc_runtime()

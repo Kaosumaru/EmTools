@@ -110,6 +110,8 @@
 <span id='controls'>
   <span><input type="checkbox" id="resize">Resize canvas</span>
   <span><input type="checkbox" id="pointerLock" checked>Lock/hide mouse pointer &nbsp;&nbsp;&nbsp;</span>
+  <span><button id="authorize-button" style="display: none;">Authorize</button></span>
+  <span><button id="signout-button" style="display: none;">Sign Out</button></span>
   <span><input type="button" value="TEST" onclick="Module.testFunction();"></span>
   <span><input type="button" value="Fullscreen" onclick="Module.requestFullScreen(document.getElementById('pointerLock').checked,
                                                                             document.getElementById('resize').checked)">
@@ -125,6 +127,8 @@
       <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
     </div>
     <textarea id="output" rows="8"></textarea>
+
+    <pre id="content"></pre>
 
     <script type='text/javascript'>
       var statusElement = document.getElementById('status');
@@ -224,6 +228,12 @@
         script.src = "DriveApp.js";
         document.body.appendChild(script);
 
+</script>
+
+<script type="text/javascript" src="js/drive.js"></script>
+<script async defer src="https://apis.google.com/js/api.js"
+  onload="console.log('Test2');this.onload=function(){};handleClientLoad();"
+  onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
   </body>
 </html>
