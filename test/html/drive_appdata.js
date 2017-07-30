@@ -1,4 +1,5 @@
-//should only search in appData
+(function( MXGDrive, undefined ) {
+
 function ifFileExists(name, parentID, cb) {
 	//q
 	//pageToken
@@ -42,7 +43,7 @@ function createFolder(file, parentId, cb) {
 	createEmptyFile(file, 'application/vnd.google-apps.folder', parentId, cb);
 }
 
-function uploadFileBinary(fileId, mimeType, body, cb) {
+function uploadFileBody(fileId, mimeType, body, cb) {
 	var oReq = new XMLHttpRequest();
 	var resp = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
 	var url = `https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`;
@@ -66,12 +67,11 @@ function uploadFileBinary(fileId, mimeType, body, cb) {
 //cb(success, resp)
 function createFile(file, cb) {
 
-	//TODO check parent ID
 	ifFileExists(file.name, file.parentId, function(s, data) {
 		if (!s) { if(cb) cb(false, data); return; }
 		var id = data.id;
 		if (id) {
-			uploadFileBinary(id, file.mimeType, file.body, cb);
+			uploadFileBody(id, file.mimeType, file.body, cb);
 			return;
 		}
 
@@ -80,10 +80,16 @@ function createFile(file, cb) {
 			if (!file.body) { if(cb) cb(true, resp); return; }
 
 			//uploadFileContent(resp.id, file.mimeType, file.body, cb);
-			uploadFileBinary(resp.id, file.mimeType, file.body, cb);
+			uploadFileBody(resp.id, file.mimeType, file.body, cb);
 		});
 
 	});
-
-
 }
+
+	MXGDrive.ifFileExists = ifFileExists;
+	MXGDrive.createEmptyFile = createEmptyFile;
+	MXGDrive.createFolder = createFolder;
+	MXGDrive.uploadFileBody = uploadFileBody;
+	MXGDrive.createFile = createFile;
+
+}( window.MXGDrive = window.MXGDrive || {} ));

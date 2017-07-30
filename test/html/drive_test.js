@@ -24,7 +24,7 @@ function createTestFile2() {
 	};
 
 	console.log("Test");
-	createFile(file, function(success, resp){
+	MXGDrive.createFile(file, function(success, resp){
 		console.log("upload="+success);
 	});
 }
