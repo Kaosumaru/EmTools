@@ -1,6 +1,4 @@
-//${STARTFILE}
-
-console.log("Test");
+//@STARTFILE@
 
 (function( MXGDrive, undefined ) {
 
@@ -10,8 +8,8 @@ function ifFileExists(name, parentID, cb) {
 	//q
 	//pageToken
 	//spaces - appDataFolder
-	var q = `name='${name}' `;
-	if (parentID) q += ` and '${parentID}' in parents `;
+	var q = "name='" + name +"'";
+	if (parentID) q += " and '" + parentID +"' in parents ";
 
 	gapi.client.drive.files.list({
 		'q': q,
@@ -53,11 +51,11 @@ function createFolder(file, parentId, cb) {
 function uploadFileBody(fileId, mimeType, body, cb) {
 	var oReq = new XMLHttpRequest();
 	var resp = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
-	var url = `https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`;
+	var url = "https://www.googleapis.com/upload/drive/v3/files/" + fileId +"?uploadType=media";
 	var access_token = resp.access_token;
 	oReq.open("PATCH", url, true);
 	oReq.setRequestHeader("Content-Type", mimeType);
-	oReq.setRequestHeader("Authorization", `Bearer ${access_token}`);
+	oReq.setRequestHeader("Authorization", "Bearer " + access_token);
 	oReq.responseType = 'json';
 
 	oReq.onload = function (oEvent) {
@@ -94,14 +92,14 @@ function createFile(file, cb) {
 }
 
 function downloadBinaryFile(fileId, cb) {
-	var url = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`
+	var url = "https://www.googleapis.com/drive/v3/files/" + fileId +"?alt=media";
 	var resp = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
 	var access_token = resp.access_token;
 
 	var oReq = new XMLHttpRequest();
 	oReq.open("GET", url, true);
 	oReq.responseType = "arraybuffer";
-	oReq.setRequestHeader("Authorization", `Bearer ${access_token}`);
+	oReq.setRequestHeader("Authorization","Bearer " + access_token);
 
 	oReq.onload = function (oEvent) {
 		if (cb) cb(true, oReq.response);
@@ -131,4 +129,4 @@ function downloadFilename(fileName, parentID, cb) {
 	MXGDrive.downloadFilename = downloadFilename;
 
 }( window.MXGDrive = window.MXGDrive || {} ));
-//${ENDFILE}
+//@ENDFILE@
