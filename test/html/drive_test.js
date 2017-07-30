@@ -17,7 +17,6 @@ function buf2hex(buffer) { // buffer is an ArrayBuffer
 }
 
 function createTestFile2() {
-	//doesn't works yet
 	var uint8Array  = new Uint8Array([1, 2, 3]);
 	var blob = new Blob(['abc123'], {type: 'text/plain'});
 	var file = {
