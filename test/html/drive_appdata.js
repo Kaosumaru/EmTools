@@ -1,5 +1,7 @@
 (function( MXGDrive, undefined ) {
 
+var fileSpaces = "appDataFolder";
+
 function ifFileExists(name, parentID, cb) {
 	//q
 	//pageToken
@@ -10,6 +12,7 @@ function ifFileExists(name, parentID, cb) {
 	gapi.client.drive.files.list({
 		'q': q,
 		'pageSize': 10,
+		'spaces': fileSpaces,
 		'fields': "nextPageToken, files(id, name)"
 	}).then(function(response) {
 		var files = response.result.files;

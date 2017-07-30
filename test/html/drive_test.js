@@ -24,7 +24,7 @@ function createTestFile2() {
 		name: 'TestFile.bin',
 		mimeType: 'application/octet-stream',
 		body: uint8Array,
-		parentId: "0B2xtLf37Xl8Aay1hbU9nWWVJMFU"
+		parentId: "" //0B2xtLf37Xl8Aay1hbU9nWWVJMFU
 	};
 
 	console.log("Test");
