@@ -12,21 +12,32 @@ function createTestFile() {
 	});
 }
 
+function buf2hex(buffer) { // buffer is an ArrayBuffer
+  return Array.prototype.map.call(new Uint8Array(buffer), x => ('00' + x.toString(16)).slice(-2)).join('');
+}
 
 function createTestFile2() {
 	//doesn't works yet
+	var uint8Array  = new Uint8Array([1, 2, 3]);
 	var blob = new Blob(['abc123'], {type: 'text/plain'});
 	var file = {
 		name: 'TestFile.bin',
 		mimeType: 'application/octet-stream',
-		body: blob,
+		body: uint8Array,
 		parentId: "0B2xtLf37Xl8Aay1hbU9nWWVJMFU"
 	};
 
 	console.log("Test");
 	MXGDrive.createFile(file, function(success, resp){
 		console.log("upload="+success);
+
+		MXGDrive.downloadFilename(file.name, file.parentId, function(result, data){
+			console.log(buf2hex(data));
+		});
+
 	});
+
+
 }
 
 function testFunction() {

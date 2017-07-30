@@ -86,10 +86,41 @@ function createFile(file, cb) {
 	});
 }
 
+function downloadBinaryFile(fileId, cb) {
+	var url = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`
+	var resp = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
+	var access_token = resp.access_token;
+
+	var oReq = new XMLHttpRequest();
+	oReq.open("GET", url, true);
+	oReq.responseType = "arraybuffer";
+	oReq.setRequestHeader("Authorization", `Bearer ${access_token}`);
+
+	oReq.onload = function (oEvent) {
+		if (cb) cb(true, oReq.response);
+	};
+
+	oReq.onerror = function (oEvent) {
+		if (cb) cb(false, oReq.response);
+	};
+
+	oReq.send(null);
+}
+
+function downloadFilename(fileName, parentID, cb) {
+	ifFileExists(fileName, parentID, function(s, data) {
+		if (!s) { if(cb) cb(false, data); return; }
+
+		downloadBinaryFile(data.id, cb);
+	});
+
+}
+
 	MXGDrive.ifFileExists = ifFileExists;
 	MXGDrive.createEmptyFile = createEmptyFile;
 	MXGDrive.createFolder = createFolder;
 	MXGDrive.uploadFileBody = uploadFileBody;
 	MXGDrive.createFile = createFile;
+	MXGDrive.downloadFilename = downloadFilename;
 
 }( window.MXGDrive = window.MXGDrive || {} ));
