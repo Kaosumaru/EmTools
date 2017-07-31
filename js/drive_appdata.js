@@ -20,7 +20,7 @@ function ifFileExists(name, parentID, cb) {
 		var files = response.result.files;
 		var id = (files && files.length > 0) ? files[0].id : "";
 		var count = (files && files.length) ? files.length : 0;
-		if (cb) cb(true, {id:id, count:count, files:files});
+		if (cb) cb(id!="", {id:id, count:count, files:files});
 	}, function(response) {
 		if (cb) cb(false, {});
 	});
@@ -102,7 +102,7 @@ function downloadBinaryFile(fileId, cb) {
 	oReq.setRequestHeader("Authorization","Bearer " + access_token);
 
 	oReq.onload = function (oEvent) {
-		if (cb) cb(true, oReq.response);
+		if (cb) cb(true, new Uint8Array(oReq.response));
 	};
 
 	oReq.onerror = function (oEvent) {
