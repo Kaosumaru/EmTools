@@ -29,7 +29,7 @@ endif()
 add_custom_command(
   OUTPUT "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/js/dist.js"
   COMMAND "node_modules\\.bin\\webpack.cmd"
-#  DEPENDS ${EM_JSLIST}
+  DEPENDS ${EM_JSLIST}
   WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/node/"
 )
 add_custom_target(EM_MAIN_JS DEPENDS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/js/dist.js)
