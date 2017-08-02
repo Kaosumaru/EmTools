@@ -29,6 +29,7 @@ endif(EMSCRIPTEN)
 
 include_directories(${PROJECT_SOURCE_DIR})
 
+include("em-test/CMakeLists.txt")
 include("em-drive/CMakeLists.txt")
 include("em-main/CMakeLists.txt")
 
