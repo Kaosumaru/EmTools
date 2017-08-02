@@ -7,6 +7,7 @@ configure_file( ${CMAKE_CURRENT_LIST_DIR}/html/test_index.html ${CMAKE_RUNTIME_O
 configure_file( ${CMAKE_CURRENT_LIST_DIR}/html/js/drive.js ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/js/drive.js @ONLY )
 configure_file( ${CMAKE_CURRENT_LIST_DIR}/package.json ${CMAKE_BINARY_DIR}/node/package.json @ONLY )
 configure_file( ${CMAKE_CURRENT_LIST_DIR}/index.js ${CMAKE_BINARY_DIR}/node/index.js @ONLY )
+configure_file( ${CMAKE_CURRENT_LIST_DIR}/webpack.config.js ${CMAKE_BINARY_DIR}/node/webpack.config.js @ONLY )
 
 
 find_program(NPM "npm")
@@ -27,7 +28,7 @@ endif()
 
 add_custom_command(
   OUTPUT "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/js/dist.js"
-  COMMAND "node_modules\\.bin\\webpack.cmd" "${CMAKE_BINARY_DIR}/node/index.js" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/js/dist.js"
+  COMMAND "node_modules\\.bin\\webpack.cmd"
 #  DEPENDS ${EM_JSLIST}
   WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/node/"
 )
