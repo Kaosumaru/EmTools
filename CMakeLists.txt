@@ -34,4 +34,4 @@ include("em-main/CMakeLists.txt")
 
 add_executable(DriveApp test/main.cpp src/DriveAppData.cpp ${CMAKE_CURRENT_BINARY_DIR}/src/drive_appdata.cpp)
 set_target_properties(DriveApp PROPERTIES LINK_FLAGS "${MX_LINK_FLAGS}")
-#add_dependencies(DriveApp EM_MAIN_JS)
+add_dependencies(DriveApp EM_MAIN_JS)
