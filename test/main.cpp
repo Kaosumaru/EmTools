@@ -1,9 +1,9 @@
 #include <iostream>
-#include "em-appdata/DriveAppData.h"
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #include <emscripten/bind.h>
+#include "em-appdata/DriveAppData.h"
 
 using namespace emscripten;
 
@@ -19,32 +19,6 @@ void testFunction() {
 			for(int i = 0; i < size; i++)
 				std::cout << (int)data[i];
 			std::cout << std::endl;
-		});
-	});
-}
-
-void testFunction2() {
-	std::cout << "testFunction!" << std::endl;
-	EM_ASM({
-
-
-		var uint8Array  = new Uint8Array([1, 2, 3]);
-		var blob = new Blob(['abc123'], {type: 'text/plain'});
-		var file = {
-			name: 'TestFile.bin',
-			mimeType: 'application/octet-stream',
-			body: uint8Array,
-			parentId: "appDataFolder" //0B2xtLf37Xl8Aay1hbU9nWWVJMFU
-		};
-
-		console.log("Test");
-		MXGDrive.createFile(file, function(success, resp){
-			console.log("upload="+success);
-
-			MXGDrive.downloadFilename(file.name, file.parentId, function(result, data){
-				console.log(data);
-			});
-
 		});
 	});
 }

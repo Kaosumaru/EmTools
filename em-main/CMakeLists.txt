@@ -26,7 +26,7 @@ if(NOT NPM)
     message(FATAL_ERROR "NPM not found!")
 endif()
 
-if(0)
+if(1)
 execute_process(COMMAND ${NPM} "install" WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/node/" RESULT_VARIABLE NPM_RES)
 
 if(NPM_RES)
