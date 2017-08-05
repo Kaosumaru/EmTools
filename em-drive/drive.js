@@ -18,6 +18,8 @@ var signoutButton = document.getElementById('signout-button');
 function handleClientLoad() {
 	gapi.load('client:auth2', initClient);
 }
+window.EmDrive = window.EmDrive || {}
+window.EmDrive.handleClientLoad = handleClientLoad;
 
 /**
  *  Initializes the API client library and sets up sign-in state
