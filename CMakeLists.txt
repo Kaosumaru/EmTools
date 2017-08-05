@@ -15,6 +15,7 @@ project (EmTools)
 #endif(EMSCRIPTEN)
 
 #include_directories(${PROJECT_SOURCE_DIR} PUBLIC)
+set(EM_BINARY_NAME "${EM_BINARY_NAME}" PARENT_SCOPE)
 
 include("em-appdata/CMakeLists.txt")
 include("em-drive/CMakeLists.txt")

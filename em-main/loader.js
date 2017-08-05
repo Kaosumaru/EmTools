@@ -1,7 +1,7 @@
 
 module.exports = function(){
 	(function() {
-		var memoryInitializer = 'DriveApp.html.mem';
+		var memoryInitializer = EM_APPLICATION_NAME + '.html.mem';
 		if (typeof Module['locateFile'] === 'function') {
 			memoryInitializer = Module['locateFile'](memoryInitializer);
 		} else if (Module['memoryInitializerPrefixURL']) {
@@ -14,6 +14,6 @@ module.exports = function(){
 	})();
 
 	var script = document.createElement('script');
-	script.src = "DriveApp.js";
-	document.body.appendChild(script);	
+	script.src = EM_APPLICATION_NAME + ".js";
+	document.body.appendChild(script);
 };

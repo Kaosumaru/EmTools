@@ -7,8 +7,6 @@ namespace MX
 {
 namespace Drive
 {
-	void InitializeDrive();
-
 	using UploadCallback = std::function<void (bool success)>;
 	void UploadFile(const std::string& name, void* body, unsigned int size, const UploadCallback& callback);
 

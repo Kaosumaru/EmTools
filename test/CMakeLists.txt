@@ -14,6 +14,7 @@ if (EMSCRIPTEN)
   set(MX_LINK_FLAGS "--bind -s TOTAL_MEMORY=67108864" )
 endif(EMSCRIPTEN)
 
+set(EM_BINARY_NAME "EmToolsTest")
 add_subdirectory (.. EmTools)
 
 add_executable(EmToolsTest main.cpp )
