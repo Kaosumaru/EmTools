@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 3.1)
 
 
-list(APPEND EM_JSENTRY "${CMAKE_CURRENT_LIST_DIR}/loader.js") #entrypoint
-list(APPEND EM_JSLIST  "${CMAKE_CURRENT_LIST_DIR}/emscripten.js")
+list(APPEND EM_JSENTRY "${CMAKE_CURRENT_LIST_DIR}/emscripten.js") #entrypoint
+list(APPEND EM_JSLIST  "${CMAKE_CURRENT_LIST_DIR}/loader.js")
 
 #-----------
 #Build entry list

@@ -1,5 +1,3 @@
-console.log("Test application");
-
 var statusElement = document.getElementById('status');
 var progressElement = document.getElementById('progress');
 var spinnerElement = document.getElementById('spinner');
@@ -80,4 +78,5 @@ window.onerror = function(event) {
 window.Module = Module;
 
 
-require('./loader')
+var loader = require('./loader')
+loader();
