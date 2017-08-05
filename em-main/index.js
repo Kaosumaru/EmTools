@@ -1,1 +1,1 @@
-console.log("Test application");
+@ENTRY_LIST_WEBPACK@
