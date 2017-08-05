@@ -73,9 +73,6 @@ if (freeAfterUse) {
 
 namespace MX {
 namespace Drive {
-#ifndef __EMSCRIPTEN__
-	void InitializeDrive() { std::cout << "Must be called under emscripten!"; };
-#endif
 
 	void UploadFile(const std::string& name, void* body, unsigned int size, const UploadCallback& callback)
 	{

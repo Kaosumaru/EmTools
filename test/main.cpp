@@ -1,5 +1,5 @@
 #include <iostream>
-#include "src/DriveAppData.h"
+#include "em-appdata/DriveAppData.h"
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -11,7 +11,7 @@ void testFunction() {
 	//TODO differentiate between network errors & 'fatal' errors
 	char body[]={5,6,7};
 	int size = 3;
-	MX::Drive::UploadFile("test/binary.bin", body, size, [](bool success){
+	MX::Drive::UploadFile("test/binary2.bin", body, size, [](bool success){
 		std::cout << "UploadFile " << success << std::endl;
 
 		MX::Drive::DownloadFile("test/binary2.bin", [](bool success, std::unique_ptr<char[]>&& data, unsigned int size){
@@ -63,7 +63,6 @@ void emscriptenLoop()
 
 int main()
 {
-	MX::Drive::InitializeDrive();
 	std::cout << "Hello World!" << std::endl;
 
 #ifdef __EMSCRIPTEN__

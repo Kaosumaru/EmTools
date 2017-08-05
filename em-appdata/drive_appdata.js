@@ -1,7 +1,3 @@
-//@STARTFILE@
-
-(function( MXGDrive, undefined ) {
-
 var fileSpaces = "appDataFolder";
 
 function ifFileExists(name, parentID, cb) {
@@ -20,7 +16,7 @@ function ifFileExists(name, parentID, cb) {
 		var files = response.result.files;
 		var id = (files && files.length > 0) ? files[0].id : "";
 		var count = (files && files.length) ? files.length : 0;
-		if (cb) cb(id!="", {id:id, count:count, files:files});
+		if (cb) cb(true, {id:id, count:count, files:files});
 	}, function(response) {
 		if (cb) cb(false, {});
 	});
@@ -114,19 +110,18 @@ function downloadBinaryFile(fileId, cb) {
 
 function downloadFilename(fileName, parentID, cb) {
 	ifFileExists(fileName, parentID, function(s, data) {
-		if (!s) { if(cb) cb(false, data); return; }
+		if (!s || !data.id) { if(cb) cb(false, data); return; }
 
 		downloadBinaryFile(data.id, cb);
 	});
 
 }
 
-	MXGDrive.ifFileExists = ifFileExists;
-	MXGDrive.createEmptyFile = createEmptyFile;
-	MXGDrive.createFolder = createFolder;
-	MXGDrive.uploadFileBody = uploadFileBody;
-	MXGDrive.createFile = createFile;
-	MXGDrive.downloadFilename = downloadFilename;
-
-}( window.MXGDrive = window.MXGDrive || {} ));
-//@ENDFILE@
+window.MXGDrive = window.MXGDrive || {}
+MXGDrive = window.MXGDrive;
+MXGDrive.ifFileExists = ifFileExists;
+MXGDrive.createEmptyFile = createEmptyFile;
+MXGDrive.createFolder = createFolder;
+MXGDrive.uploadFileBody = uploadFileBody;
+MXGDrive.createFile = createFile;
+MXGDrive.downloadFilename = downloadFilename;
