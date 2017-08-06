@@ -81,7 +81,8 @@ namespace Drive {
 		UploadFileRaw(name, body, size, (std::intptr_t)cb, [](std::intptr_t arg, int success)
 		{
 			std::unique_ptr<UploadCallback> callback{(UploadCallback*)arg};
-			(*callback)(success);
+			NetworkResponse result = success ? NetworkResponse::OK : NetworkResponse::FatalError;
+			(*callback)(result);
 		});
 #endif
 	}
@@ -93,7 +94,8 @@ namespace Drive {
 		DownloadFileRaw(name, (std::intptr_t)cb, [](std::intptr_t arg, int success, void* data, unsigned int size)
 		{
 			std::unique_ptr<DownloadCallback> callback{(DownloadCallback*)arg};
-			(*callback)(success, std::unique_ptr<char[]>{(char*)data}, size);
+			NetworkResponse result = success ? NetworkResponse::OK : NetworkResponse::FatalError;
+			(*callback)(result, std::unique_ptr<char[]>{(char*)data}, size);
 		});
 #endif
 	}

@@ -11,11 +11,11 @@ void testFunction() {
 	//TODO differentiate between network errors & 'fatal' errors
 	char body[]={5,6,7};
 	int size = 3;
-	MX::Drive::UploadFile("test/binary2.bin", body, size, [](bool success){
-		std::cout << "UploadFile " << success << std::endl;
+	MX::Drive::UploadFile("test/binary2.bin", body, size, [](MX::Drive::NetworkResponse result){
+		std::cout << "UploadFile " << (int)result << std::endl;
 
-		MX::Drive::DownloadFile("test/binary2.bin", [](bool success, std::unique_ptr<char[]>&& data, unsigned int size){
-			std::cout << "DownloadFile " << success << " " << size << std::endl;
+		MX::Drive::DownloadFile("test/binary2.bin", [](MX::Drive::NetworkResponse result, std::unique_ptr<char[]>&& data, unsigned int size){
+			std::cout << "DownloadFile " << (int)result << " " << size << std::endl;
 			for(int i = 0; i < size; i++)
 				std::cout << (int)data[i];
 			std::cout << std::endl;
