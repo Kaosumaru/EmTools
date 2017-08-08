@@ -15,6 +15,11 @@ if (EMSCRIPTEN)
 endif(EMSCRIPTEN)
 
 set(EM_BINARY_NAME "EmToolsTest")
+set(EM_GAPI_CLIENT_ID "213817666972-ogjsvovt26iofsb0ie7d4pq2ofp9kt92.apps.googleusercontent.com")
+set(EM_GAPI_SCOPES "https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/drive")
+
+
+
 add_subdirectory (.. EmTools)
 
 add_executable(EmToolsTest main.cpp )

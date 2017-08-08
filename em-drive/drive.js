@@ -1,25 +1,26 @@
-// Client ID and API key from the Developer Console
-var CLIENT_ID = '213817666972-ogjsvovt26iofsb0ie7d4pq2ofp9kt92.apps.googleusercontent.com';
+window.EmDrive = window.EmDrive || {}
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
 
-// Authorization scopes required by the API; multiple scopes can be
-// included, separated by spaces.
-//debug test - https://www.googleapis.com/auth/drive
-var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/drive';
-
 var authorizeButton = document.getElementById('authorize-button');
 var signoutButton = document.getElementById('signout-button');
+
+var Promise = require('promise');
+var initializePromiseResolve;
+
+var initializePromise = new Promise(function (resolve, reject) {
+	initializePromiseResolve = resolve;
+});
+window.EmDrive.ready = initializePromise;
 
 /**
  *  On load, called to load the auth2 library and API client library.
  */
-function handleClientLoad() {
+function initialize() {
 	gapi.load('client:auth2', initClient);
 }
-window.EmDrive = window.EmDrive || {}
-window.EmDrive.handleClientLoad = handleClientLoad;
+window.EmDrive.initialize = initialize;
 
 /**
  *  Initializes the API client library and sets up sign-in state
@@ -28,9 +29,10 @@ window.EmDrive.handleClientLoad = handleClientLoad;
 function initClient() {
 	gapi.client.init({
 		discoveryDocs: DISCOVERY_DOCS,
-		clientId: CLIENT_ID,
-		scope: SCOPES
+		clientId: EM_GAPI_CLIENT_ID,
+		scope: EM_GAPI_SCOPES
 	}).then(function () {
+		initializePromiseResolve();
 		// Listen for sign-in state changes.
 		gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 

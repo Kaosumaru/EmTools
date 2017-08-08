@@ -132,8 +132,13 @@
 
 <script type="text/javascript" src="js/dist.js"></script>
 <script async defer src="https://apis.google.com/js/api.js"
-  onload="this.onload=function(){};window.EmDrive.handleClientLoad();"
+  onload="this.onload=function(){};window.EmDrive.initialize();"
   onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+<script type="text/javascript">
+  window.EmDrive.ready.then(function(){
+    console.log("Ready");
+  });
 </script>
   </body>
 </html>
