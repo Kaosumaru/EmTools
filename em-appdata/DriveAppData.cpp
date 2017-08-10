@@ -53,19 +53,7 @@ namespace
 				Runtime.dynCall('viiii', callback, [arg, 1, buffer, data.length]);
 			});
 		}, name.c_str(), arg, callback);
-		//writeArrayToMemory(array, buffer)
 	}
-#if 0
-	void UploadFileRaw(const std::string& name, void* body, unsigned int size, std::intptr_t arg, UploadFileRawCallback callback)
-	{
-
-
-if (freeAfterUse) {
-		_free(buffer);
-}
-	}
-#endif
-
 
 }
 #endif

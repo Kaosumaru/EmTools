@@ -19,6 +19,15 @@ function initialize() {
 }
 window.EmDrive.initialize = initialize;
 
+function emscriptenCallback(name, value) {
+	if (!window.Module[name]) {
+		window.Module.postRun.push(function(){ emscriptenCallback(name, value); });
+		return;
+	}
+
+	if (value) Module[name](value); else Module[name]();
+}
+
 /**
  *  Initializes the API client library and sets up sign-in state
  *  listeners.
@@ -30,5 +39,13 @@ function initClient() {
 		scope: EM_GAPI_SCOPES
 	}).then(function () {
 		initializePromiseResolve();
+
+		emscriptenCallback("DriveInitializeCallbackJS");
+
+		gapi.auth2.getAuthInstance().isSignedIn.listen(function(signedIn){
+			emscriptenCallback("SignedInCallbackJS", signedIn);
+		});
+		emscriptenCallback("SignedInCallbackJS", gapi.auth2.getAuthInstance().isSignedIn.get());
+
 	});
 }

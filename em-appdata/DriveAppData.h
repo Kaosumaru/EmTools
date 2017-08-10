@@ -10,7 +10,8 @@ namespace Drive
 	enum class NetworkResponse {
 		OK,
 		TemporaryError,
-		FatalError
+		FatalError,
+		NotAuthorized
 	};
 
 	using UploadCallback = std::function<void (NetworkResponse success)>;
