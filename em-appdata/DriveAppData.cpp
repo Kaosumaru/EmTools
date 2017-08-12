@@ -16,10 +16,13 @@ namespace
 	{
 		EM_ASM_ARGS({
 			var name = Pointer_stringify($0);
-			var array = HEAPU8.subarray($1, $1 + $2);
 			var size = $2;
 			var arg = $3;
 			var callback = $4;
+
+			var src_array = HEAPU8.subarray($1, $1 + $2);
+			var array = new Uint8Array(size);
+			array.set(src_array);
 
 			var file = {};
 
