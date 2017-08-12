@@ -16,6 +16,10 @@ project (EmTools)
 
 #include_directories(${PROJECT_SOURCE_DIR} PUBLIC)
 set(EM_BINARY_NAME "${EM_BINARY_NAME}" PARENT_SCOPE)
+set(EM_HTML_PATH "${EM_HTML_PATH}" PARENT_SCOPE)
+if(NOT EM_HTML_PATH)
+		set(EM_HTML_PATH ${CMAKE_CURRENT_LIST_DIR}/html/index.html)
+endif()
 
 include("em-appdata/CMakeLists.txt")
 include("em-drive/CMakeLists.txt")
