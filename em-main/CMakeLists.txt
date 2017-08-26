@@ -13,6 +13,10 @@ ENDFOREACH(f)
 MESSAGE( STATUS "EMMAIN_JS_LIST:    " ${ENTRY_LIST_WEBPACK}  )
 #-----------
 
+if(NOT CMAKE_RUNTIME_OUTPUT_DIRECTORY)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
+endif()
+
 configure_file( ${EM_HTML_PATH} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/index.html @ONLY )
 configure_file( ${CMAKE_CURRENT_LIST_DIR}/package.json ${CMAKE_BINARY_DIR}/node/package.json @ONLY )
 configure_file( ${CMAKE_CURRENT_LIST_DIR}/index.js ${CMAKE_BINARY_DIR}/node/index.js @ONLY )
