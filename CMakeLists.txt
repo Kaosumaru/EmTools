@@ -21,6 +21,7 @@ if(NOT EM_HTML_PATH)
 		set(EM_HTML_PATH ${CMAKE_CURRENT_LIST_DIR}/html/index.html)
 endif()
 
+include("em-utils/CMakeLists.txt")
 include("em-appdata/CMakeLists.txt")
 include("em-drive/CMakeLists.txt")
 include("em-main/CMakeLists.txt")

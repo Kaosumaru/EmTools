@@ -1,0 +1,4 @@
+cmake_minimum_required (VERSION 3.1)
+
+list(APPEND EM_CPP_SRC "${CMAKE_CURRENT_LIST_DIR}/Idb.cpp")
+list(APPEND EM_CPP_HEADER "${CMAKE_CURRENT_LIST_DIR}/Idb.h")
