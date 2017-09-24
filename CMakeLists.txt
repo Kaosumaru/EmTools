@@ -17,6 +17,8 @@ project (EmTools)
 #include_directories(${PROJECT_SOURCE_DIR} PUBLIC)
 set(EM_BINARY_NAME "${EM_BINARY_NAME}")
 set(EM_HTML_PATH "${EM_HTML_PATH}")
+set(EM_CLIENT_JS_FILES "${EM_JS_FILES}")
+
 if(NOT EM_HTML_PATH)
 		set(EM_HTML_PATH ${CMAKE_CURRENT_LIST_DIR}/html/index.html)
 endif()
