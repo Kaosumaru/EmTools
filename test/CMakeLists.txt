@@ -16,7 +16,9 @@ endif(EMSCRIPTEN)
 
 set(EM_BINARY_NAME "EmToolsTest")
 set(EM_HTML_PATH ${CMAKE_CURRENT_LIST_DIR}/html/index.html)
+
 list(APPEND EM_JS_FILES "${CMAKE_CURRENT_LIST_DIR}/ts/test.ts")
+list(APPEND EM_JS_FILES "${CMAKE_CURRENT_LIST_DIR}/js/drive_test.js")
 
 set(EM_GAPI_CLIENT_ID "213817666972-ogjsvovt26iofsb0ie7d4pq2ofp9kt92.apps.googleusercontent.com")
 set(EM_GAPI_SCOPES "https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/drive")
