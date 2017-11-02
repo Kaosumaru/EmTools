@@ -13,6 +13,7 @@ module.exports = function(){
 		xhr.send(null);
 	})();
 
+    var wasm = EM_WASM;
 	var script = document.createElement('script');
 	script.src = EM_APPLICATION_NAME + ".js";
 	document.body.appendChild(script);
