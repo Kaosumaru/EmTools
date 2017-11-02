@@ -24,7 +24,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       EM_APPLICATION_NAME: '"@EM_BINARY_NAME@"',
-      EM_WASM: '"@EMSCRIPTEN_WASM@"',
+      EM_WASM: '("@EM_WASM@" == "ON" || "@EMSCRIPTEN_WASM@" == "ON")',
       EM_GAPI_CLIENT_ID: '"@EM_GAPI_CLIENT_ID@"',
       EM_GAPI_SCOPES: '"@EM_GAPI_SCOPES@"',
     })
